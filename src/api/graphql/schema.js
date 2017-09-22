@@ -20,4 +20,10 @@ export default new GraphQLSchema({
     }),
   }),
   // mutation: ...
+  mutation: new GraphQLObjectType({
+    name: 'Mutation',
+    fields: () => ({
+      // ...ArticleMutations,
+    }),
+  }),
 });
