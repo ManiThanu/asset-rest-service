@@ -1,0 +1,18 @@
+FROM artprod.dev.bloomberg.com/webops/webops-nodejs:6.10
+
+# Installs build deps necessary for running tests and building app
+
+ENV http_proxy=http://devproxy.bloomberg.com:82
+ENV https_proxy=http://devproxy.bloomberg.com:82
+ENV no_proxy=.bloomberg.com
+
+# https://github.com/nodejs/docker-node/issues/10 (RELATED)
+ENV USER=root
+
+RUN useradd --user-group --create-home --shell /bin/false synusr
+
+RUN npm config set registry https://artprod.dev.bloomberg.com/artifactory/api/npm/npm-repos
+RUN npm config set strict-ssl false
+
+COPY . /var/www/syndication-admin
+WORKDIR /var/www/syndication-admin
