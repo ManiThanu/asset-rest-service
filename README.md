@@ -1,0 +1,1 @@
+# asset-rest-service
